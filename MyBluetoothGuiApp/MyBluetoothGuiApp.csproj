@@ -1,0 +1,40 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net8.0-windows10.0.22621.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>disable</ImplicitUsings>
+		<!-- Viktigt: Avstängd Implicit Usings -->
+		<EnableDefaultPageItems>false</EnableDefaultPageItems>
+		<!-- Viktigt: Avstängd default Page/Resource inkludering -->
+		<UseWPF>true</UseWPF>
+	</PropertyGroup>
+
+	<!-- Definition av mappstrukturen (valfritt men bra för ordning) -->
+	<ItemGroup>
+		<Folder Include="Models\" />
+		<Folder Include="Helpers\" />
+		<Folder Include="Services\" />
+		<Folder Include="ViewModels\" />
+		<Folder Include="Themes\" />
+	</ItemGroup>
+
+	<!-- Explicit inkludering av WPF-sidor (som MainWindow.xaml) -->
+	<!-- Eftersom EnableDefaultPageItems är false, måste vi lista sidorna manuellt -->
+	<ItemGroup>
+		<Page Include="MainWindow.xaml">
+			<Generator>MSBuild:Compile</Generator>
+			<SubType>Designer</SubType>
+		</Page>
+	</ItemGroup>
+
+	<!-- Explicit inkludering av temafilarna som EMBEDDADE RESURSER -->
+	<!-- Detta är den korrekta metoden när Build Action är Resource -->
+	<ItemGroup>
+		<Resource Include="Themes\DarkTheme.xaml" />
+		<Resource Include="Themes\LightTheme.xaml" />
+	</ItemGroup>
+
+
+</Project>

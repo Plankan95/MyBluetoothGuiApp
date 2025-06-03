@@ -1,0 +1,86 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Bakgrundsfärger för ljust tema -->
+    <SolidColorBrush x:Key="WindowBackgroundBrush" Color="White"/>
+    <SolidColorBrush x:Key="PanelBackgroundBrush" Color="#F0F0F0"/>
+    <!-- Ljusgrå panelbakgrund -->
+    <SolidColorBrush x:Key="ListItemBackgroundBrush" Color="Transparent"/>
+    <!-- Genomskinlig bakgrund för listobjekt -->
+    <SolidColorBrush x:Key="ListItemBackgroundHoverBrush" Color="#E0E0E0"/>
+    <!-- Bakgrund vid hover -->
+
+    <!-- Textfärger för ljust tema -->
+    <SolidColorBrush x:Key="PrimaryTextBrush" Color="Black"/>
+    <SolidColorBrush x:Key="SecondaryTextBrush" Color="#333333"/>
+    <!-- Mörkgrå för sekundär text -->
+
+    <!-- Kantlinjer och avdelare för ljust tema -->
+    <SolidColorBrush x:Key="BorderBrush" Color="#CCCCCC"/>
+    <!-- Ljusgrå kantlinje -->
+
+    <!-- Färger för status-cirklar/ikoner baserade på status -->
+    <SolidColorBrush x:Key="ConnectedStatusColor" Color="Green"/>
+    <SolidColorBrush x:Key="DisconnectedStatusColor" Color="Red"/>
+
+    <!-- Standardstilar för vanliga kontroller för ljust tema -->
+    <Style TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}"/>
+    </Style>
+
+    <!-- Stil för ListBoxItem (varje rad i listan) -->
+    <Style TargetType="ListBoxItem">
+        <Setter Property="Background" Value="{DynamicResource ListItemBackgroundBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}"/>
+        <Setter Property="BorderThickness" Value="0,0,0,1"/>
+        <!-- En tunn linje under varje objekt -->
+        <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
+        <Setter Property="Padding" Value="5"/>
+        <!-- Lite luft runt innehållet -->
+        <Style.Triggers>
+            <!-- Stil när objektet är markerat -->
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" Value="#0078D7"/>
+                <!-- Standard Windows urvalsfärg (blå) -->
+                <Setter Property="Foreground" Value="White"/>
+            </Trigger>
+            <!-- Stil när musen är över objektet -->
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{DynamicResource ListItemBackgroundHoverBrush}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- Stil för hela ListBox-kontrollen -->
+    <Style TargetType="ListBox">
+        <Setter Property="Background" Value="{DynamicResource PanelBackgroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <!-- Får innehållet att fylla bredden -->
+    </Style>
+
+    <!-- Stil för vanliga knappar -->
+    <Style TargetType="Button">
+        <Setter Property="Background" Value="#E0E0E0"/>
+        <!-- Ljusgrå knapp -->
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Padding" Value="5,2"/>
+        <Setter Property="Margin" Value="2"/>
+    </Style>
+
+    <!-- Stil för ToggleButton (används för temaväxling) -->
+    <Style TargetType="ToggleButton">
+        <Setter Property="Background" Value="#E0E0E0"/>
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Padding" Value="5,2"/>
+        <Setter Property="Margin" Value="2"/>
+        <Setter Property="Content" Value="Växla Tema"/>
+        <!-- Standardtext om ingen Content sätts -->
+    </Style>
+
+</ResourceDictionary>

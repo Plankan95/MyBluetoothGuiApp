@@ -1,0 +1,75 @@
+﻿<Window x:Class="BluetoothManager.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BluetoothManager"
+        xmlns:viewmodels="clr-namespace:BluetoothManager.ViewModels"
+        mc:Ignorable="d"
+        Title="Bluetooth Manager" Height="450" Width="400"
+        Background="{DynamicResource WindowBackgroundBrush}">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,10">
+            <TextBlock Text="Mörkt Läge" VerticalAlignment="Center" Margin="0,0,5,0"
+                       Foreground="{DynamicResource PrimaryTextBrush}"/>
+            <ToggleButton IsChecked="{Binding IsDarkTheme}"
+                          Command="{Binding ToggleThemeCommand}">
+                <ToggleButton.Style>
+                    <Style TargetType="ToggleButton" BasedOn="{StaticResource {x:Type ToggleButton}}">
+                    </Style>
+                </ToggleButton.Style>
+            </ToggleButton>
+        </StackPanel>
+
+        <ListBox Grid.Row="1" ItemsSource="{Binding Devices}"
+                 Background="{DynamicResource PanelBackgroundBrush}"
+                 BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1">
+            <ListBox.ItemTemplate>
+                <DataTemplate DataType="viewmodels:BluetoothDeviceViewModel">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0"
+                                   Text="{Binding TypeIconGlyph}"
+                                   FontFamily="Segoe MDL2 Assets" FontSize="18" VerticalAlignment="Center" Margin="0,0,10,0"
+                                   Foreground="{DynamicResource SecondaryTextBrush}"/>
+
+                        <TextBlock Grid.Column="1" Text="{Binding Name}"
+                                   FontWeight="Bold" VerticalAlignment="Center"
+                                   Foreground="{DynamicResource PrimaryTextBrush}"/>
+
+                        <TextBlock Grid.Column="2"
+                                   Text="{Binding StatusIconGlyph}"
+                                   FontFamily="Segoe MDL2 Assets" FontSize="16" VerticalAlignment="Center" Margin="5,0"
+                                   Foreground="{Binding StatusColor}"/>
+
+                        <TextBlock Grid.Column="3" Text="{Binding ConnectionStatus}"
+                                   VerticalAlignment="Center"
+                                   Foreground="{DynamicResource SecondaryTextBrush}"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                </Style>
+            </ListBox.ItemContainerStyle>
+        </ListBox>
+
+        <TextBlock Grid.Row="2" Text="{Binding StatusText}" Margin="0,10,0,0"
+                   HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                   Foreground="{DynamicResource SecondaryTextBrush}"/>
+    </Grid>
+</Window>
